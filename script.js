@@ -134,7 +134,7 @@ function shuffleCard() {
             card.querySelector(".back-view img");
 
         imgTag.src =
-            `./images/img-${arr[index]}.png`;
+           `img-${arr[index]}.png`;
 
         card.removeEventListener(
             "click",
