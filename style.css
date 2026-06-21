@@ -55,8 +55,8 @@ body{
 }
 
 .back-view img{
-    width:120px;
-    height:120px;
+    width:110%;
+    height:110%;
     object-fit:contain;
 }
 
