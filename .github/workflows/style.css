@@ -1,77 +1,96 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: #4d0d8f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: sans-serif;
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#6a0dad;
+    font-family:Arial,sans-serif;
 }
 
-.wrapper {
-    width: 700px;
+.wrapper{
+    width:700px;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    list-style: none;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    list-style:none;
 }
 
-.card {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
-    transform-style: preserve-3d;
+.card{
+    position:relative;
+    width:120px;
+    height:120px;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .35s;
 }
 
-.view {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
+.view{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#fff;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    backface-visibility:hidden;
 }
 
-.front-view {
-    font-size: 40px;
+.front-view{
+    font-size:42px;
+    font-weight:bold;
 }
 
-.back-view {
-    transform: rotateY(180deg);
+.back-view{
+    transform:rotateY(180deg);
 }
 
-.back-view img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+.back-view img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
 }
 
-.card.flip {
-    transform: rotateY(180deg);
-    transition: 0.4s;
+.card.flip{
+    transform:rotateY(180deg);
 }
 
-.details {
-    margin-top: 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card.shake{
+    animation:shake .35s ease-in-out 2;
 }
 
-button {
-    padding: 10px 20px;
-    cursor: pointer;
+@keyframes shake{
+    0%,100%{
+        transform:translateX(0) rotateY(180deg);
+    }
+    25%{
+        transform:translateX(-10px) rotateY(180deg);
+    }
+    75%{
+        transform:translateX(10px) rotateY(180deg);
+    }
+}
+
+.details{
+    margin-top:25px;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
