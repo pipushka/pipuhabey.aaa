@@ -42,7 +42,7 @@ function flipCard({target: clickedCard}) {
 function matchCards(img1, img2) {
     if(img1 === img2) {
         matchedCard++;
-        if(matchedCard == 6 && timeLeft > 0) {
+        if(matchedCard == 5 && timeLeft > 0) {
             return clearInterval(timer);
         }
         cardOne.removeEventListener("click", flipCard);
@@ -73,7 +73,7 @@ function shuffleCard() {
     flipsTag.innerText = flips;
     disableDeck = isPlaying = false;
 
-    let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+    let arr = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
     arr.sort(() => Math.random() > 0.5 ? 1 : -1);
 
     cards.forEach((card, index) => {
