@@ -26,8 +26,8 @@ body{
 
 .card{
     position:relative;
-    width:240px;
-    height:240px;
+    width:120px;
+    height:120px;
     cursor:pointer;
     transform-style:preserve-3d;
     transition:transform .35s;
@@ -55,8 +55,8 @@ body{
 }
 
 .back-view img{
-    width:95%;
-    height:95%;
+    width:120%;
+    height:120%;
     object-fit:contain;
 }
 
