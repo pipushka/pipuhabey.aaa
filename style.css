@@ -14,14 +14,15 @@ body{
 }
 
 .wrapper{
-    width:900px;
+    width:750px;
 }
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(10,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:15px;
     list-style:none;
+    justify-items:center;
 }
 
 .card{
