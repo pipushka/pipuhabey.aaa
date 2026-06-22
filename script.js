@@ -1,8 +1,6 @@
 const cards = document.querySelectorAll(".card");
-const flipsTag = document.querySelector(".flips b");
 const refreshBtn = document.querySelector(".details button");
 
-let flips = 0;
 let matchedCard = 0;
 let disableDeck = false;
 let cardOne = null;
@@ -18,9 +16,6 @@ function flipCard(e) {
     ) {
         return;
     }
-
-    flips++;
-    flipsTag.innerText = flips;
 
     clickedCard.classList.add("flip");
 
@@ -76,13 +71,10 @@ function matchCards(img1, img2) {
 }
 
 function shuffleCard() {
-    flips = 0;
     matchedCard = 0;
     cardOne = null;
     cardTwo = null;
     disableDeck = false;
-
-    flipsTag.innerText = flips;
 
     const arr = [
         1,2,3,4,5,6,7,8,9,10,
@@ -95,14 +87,26 @@ function shuffleCard() {
         card.classList.remove("flip");
         card.classList.remove("shake");
 
-        const imgTag = card.querySelector(".back-view img");
+        const imgTag =
+            card.querySelector(".back-view img");
+
         imgTag.src = `img-${arr[index]}.png`;
 
-        card.removeEventListener("click", flipCard);
-        card.addEventListener("click", flipCard);
+        card.removeEventListener(
+            "click",
+            flipCard
+        );
+
+        card.addEventListener(
+            "click",
+            flipCard
+        );
     });
 }
 
-refreshBtn.addEventListener("click", shuffleCard);
+refreshBtn.addEventListener(
+    "click",
+    shuffleCard
+);
 
 shuffleCard();
