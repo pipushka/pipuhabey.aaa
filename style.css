@@ -1,4 +1,4 @@
-*{ margin:0; padding:0; box-sizing:border-box; } body{ min-height:100vh; display:flex; justify-content:center; align-items:center; background:#6a0dad; font-family:Arial,sans-serif; } .wrapper{ width:700px; } .cards{
+*{ margin:0; padding:0; box-sizing:border-box; } body{ min-height:100vh; display:flex; justify-content:center; align-items:center; background:#ADD8E6; font-family:Arial,sans-serif; } .wrapper{ width:700px; } .cards{
     display:grid;
     grid-template-columns:repeat(5,110px);
     gap:15px;
