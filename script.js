@@ -8,6 +8,10 @@ let matchedCard = 0;
 let disableDeck = false;
 let cardOne, cardTwo;
 
+const refreshBtn = document.getElementById("restart");
+
+refreshBtn.addEventListener("click", shuffleCard);
+
 function flipCard(e) {
     let clickedCard = e.currentTarget;
     if (
