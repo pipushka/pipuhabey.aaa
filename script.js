@@ -1,4 +1,104 @@
-const cards = document.querySelectorAll(".card"); const timeTag = document.querySelector(".time b"); const flipsTag = document.querySelector(".flips b"); const refreshBtn = document.querySelector(".details button"); let maxTime = 20; let timeLeft = maxTime; let flips = 0; let matchedCard = 0; let disableDeck = false; let isPlaying = false; let cardOne, cardTwo, timer; function initTimer() { if (timeLeft <= 0) { clearInterval(timer); return; } timeLeft--; timeTag.innerText = timeLeft; } function flipCard(e) { let clickedCard = e.currentTarget; if (!isPlaying) { isPlaying = true; timer = setInterval(initTimer, 1000); } if ( clickedCard === cardOne || disableDeck || timeLeft <= 0 || clickedCard.classList.contains("flip") ) { return; } flips++; flipsTag.innerText = flips; clickedCard.classList.add("flip"); if (!cardOne) { cardOne = clickedCard; return; } cardTwo = clickedCard; disableDeck = true; let cardOneImg = cardOne.querySelector(".back-view img").src; let cardTwoImg = cardTwo.querySelector(".back-view img").src; matchCards(cardOneImg, cardTwoImg); } function matchCards(img1, img2) { if (img1 === img2) { matchedCard++; if (matchedCard === 10) { clearInterval(timer); } cardOne.removeEventListener( "click", flipCard ); cardTwo.removeEventListener( "click", flipCard ); cardOne = null; cardTwo = null; disableDeck = false; return; } setTimeout(() => { cardOne.classList.add("shake"); cardTwo.classList.add("shake"); }, 400); setTimeout(() => { cardOne.classList.remove( "shake", "flip" ); cardTwo.classList.remove( "shake", "flip" ); cardOne = null; cardTwo = null; disableDeck = false; }, 1200); } function shuffleCard() {
+const cards = document.querySelectorAll(".card");
+const timeTag = document.querySelector(".time b");
+const flipsTag = document.querySelector(".flips b");
+const refreshBtn = document.querySelector(".details button");
+
+let maxTime = 20;
+let timeLeft = maxTime;
+let flips = 0;
+let matchedCard = 0;
+let disableDeck = false;
+let isPlaying = false;
+let cardOne = null;
+let cardTwo = null;
+let timer;
+
+function initTimer() {
+    if (timeLeft <= 0) {
+        clearInterval(timer);
+        return;
+    }
+
+    timeLeft--;
+    timeTag.innerText = timeLeft;
+}
+
+function flipCard(e) {
+    const clickedCard = e.currentTarget;
+
+    if (!isPlaying) {
+        isPlaying = true;
+        timer = setInterval(initTimer, 1000);
+    }
+
+    if (
+        clickedCard === cardOne ||
+        disableDeck ||
+        timeLeft <= 0 ||
+        clickedCard.classList.contains("flip")
+    ) {
+        return;
+    }
+
+    flips++;
+    flipsTag.innerText = flips;
+
+    clickedCard.classList.add("flip");
+
+    if (!cardOne) {
+        cardOne = clickedCard;
+        return;
+    }
+
+    cardTwo = clickedCard;
+    disableDeck = true;
+
+    const cardOneImg =
+        cardOne.querySelector(".back-view img").src;
+
+    const cardTwoImg =
+        cardTwo.querySelector(".back-view img").src;
+
+    matchCards(cardOneImg, cardTwoImg);
+}
+
+function matchCards(img1, img2) {
+    if (img1 === img2) {
+        matchedCard++;
+
+        if (matchedCard === 10) {
+            clearInterval(timer);
+            setTimeout(() => {
+                alert("Победа!");
+            }, 300);
+        }
+
+        cardOne.removeEventListener("click", flipCard);
+        cardTwo.removeEventListener("click", flipCard);
+
+        cardOne = null;
+        cardTwo = null;
+        disableDeck = false;
+
+        return;
+    }
+
+    setTimeout(() => {
+        cardOne.classList.add("shake");
+        cardTwo.classList.add("shake");
+    }, 400);
+
+    setTimeout(() => {
+        cardOne.classList.remove("shake", "flip");
+        cardTwo.classList.remove("shake", "flip");
+
+        cardOne = null;
+        cardTwo = null;
+        disableDeck = false;
+    }, 1200);
+}
+
+function shuffleCard() {
     timeLeft = maxTime;
     flips = 0;
     matchedCard = 0;
@@ -13,7 +113,7 @@ const cards = document.querySelectorAll(".card"); const timeTag = document.query
     disableDeck = false;
     isPlaying = false;
 
-    let arr = [
+    const arr = [
         1,2,3,4,5,6,7,8,9,10,
         1,2,3,4,5,6,7,8,9,10
     ];
@@ -32,3 +132,6 @@ const cards = document.querySelectorAll(".card"); const timeTag = document.query
         card.addEventListener("click", flipCard);
     });
 }
+
+refreshBtn.addEventListener("click", shuffleCard);
+shuffleCard();
