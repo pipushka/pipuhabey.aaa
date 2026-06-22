@@ -47,7 +47,7 @@ function matchCards(img1, img2) {
 
         if (matchedCard === 10) {
             setTimeout(() => {
-                alert("Победа!");
+                alert("Какое слово спрятано?");
             }, 300);
         }
 
