@@ -104,9 +104,11 @@ function shuffleCard() {
     });
 }
 
-refreshBtn.addEventListener(
-    "click",
-    shuffleCard
-);
+if (refreshBtn) {
+    refreshBtn.addEventListener(
+        "click",
+        shuffleCard
+    );
+}
 
 shuffleCard();
