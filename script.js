@@ -1,40 +1,19 @@
 const cards = document.querySelectorAll(".card");
-const timeTag = document.querySelector(".time b");
 const flipsTag = document.querySelector(".flips b");
 const refreshBtn = document.querySelector(".details button");
 
-let maxTime = 20;
-let timeLeft = maxTime;
 let flips = 0;
 let matchedCard = 0;
 let disableDeck = false;
-let isPlaying = false;
 let cardOne = null;
 let cardTwo = null;
-let timer;
-
-function initTimer() {
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        return;
-    }
-
-    timeLeft--;
-    timeTag.innerText = timeLeft;
-}
 
 function flipCard(e) {
     const clickedCard = e.currentTarget;
 
-    if (!isPlaying) {
-        isPlaying = true;
-        timer = setInterval(initTimer, 1000);
-    }
-
     if (
         clickedCard === cardOne ||
         disableDeck ||
-        timeLeft <= 0 ||
         clickedCard.classList.contains("flip")
     ) {
         return;
@@ -67,7 +46,6 @@ function matchCards(img1, img2) {
         matchedCard++;
 
         if (matchedCard === 10) {
-            clearInterval(timer);
             setTimeout(() => {
                 alert("Победа!");
             }, 300);
@@ -79,7 +57,6 @@ function matchCards(img1, img2) {
         cardOne = null;
         cardTwo = null;
         disableDeck = false;
-
         return;
     }
 
@@ -99,19 +76,13 @@ function matchCards(img1, img2) {
 }
 
 function shuffleCard() {
-    timeLeft = maxTime;
     flips = 0;
     matchedCard = 0;
     cardOne = null;
     cardTwo = null;
-
-    clearInterval(timer);
-
-    timeTag.innerText = timeLeft;
-    flipsTag.innerText = flips;
-
     disableDeck = false;
-    isPlaying = false;
+
+    flipsTag.innerText = flips;
 
     const arr = [
         1,2,3,4,5,6,7,8,9,10,
@@ -125,7 +96,6 @@ function shuffleCard() {
         card.classList.remove("shake");
 
         const imgTag = card.querySelector(".back-view img");
-
         imgTag.src = `img-${arr[index]}.png`;
 
         card.removeEventListener("click", flipCard);
@@ -134,4 +104,5 @@ function shuffleCard() {
 }
 
 refreshBtn.addEventListener("click", shuffleCard);
+
 shuffleCard();
