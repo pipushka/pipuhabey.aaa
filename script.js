@@ -3,36 +3,16 @@ const timeTag = document.querySelector(".time b");
 const flipsTag = document.querySelector(".flips b");
 const refreshBtn = document.querySelector(".details button");
 
-let maxTime = 60;
-let timeLeft = maxTime;
 let flips = 0;
 let matchedCard = 0;
 let disableDeck = false;
-let isPlaying = false;
-let cardOne, cardTwo, timer;
-
-function initTimer() {
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        return;
-    }
-
-    timeLeft--;
-    timeTag.innerText = timeLeft;
-}
+let cardOne, cardTwo;
 
 function flipCard(e) {
     let clickedCard = e.currentTarget;
-
-    if (!isPlaying) {
-        isPlaying = true;
-        timer = setInterval(initTimer, 1000);
-    }
-
     if (
         clickedCard === cardOne ||
         disableDeck ||
-        timeLeft <= 0 ||
         clickedCard.classList.contains("flip")
     ) {
         return;
@@ -64,9 +44,9 @@ function matchCards(img1, img2) {
     if (img1 === img2) {
         matchedCard++;
 
-        if (matchedCard === 10) {
-            clearInterval(timer);
-        }
+     if (matchedCard === 10) {
+    alert("Найди слово");
+}
 
         cardOne.removeEventListener(
             "click",
