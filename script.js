@@ -64,7 +64,7 @@ function matchCards(img1, img2) {
     if (img1 === img2) {
         matchedCard++;
 
-        if (matchedCard === 5) {
+        if (matchedCard === 10) {
             clearInterval(timer);
         }
 
