@@ -58,7 +58,7 @@ function matchCards(img1, img2) {
     setTimeout(() => {
         cardOne.classList.add("shake");
         cardTwo.classList.add("shake");
-    }, 400);
+    }, 100);
 
     setTimeout(() => {
         cardOne.classList.remove("shake", "flip");
@@ -67,7 +67,7 @@ function matchCards(img1, img2) {
         cardOne = null;
         cardTwo = null;
         disableDeck = false;
-    }, 1200);
+    }, 350);
 }
 
 function shuffleCard() {
